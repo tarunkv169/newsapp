@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../TextUtils-React"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "newsapp"
+	}
+}
