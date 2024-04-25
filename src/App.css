@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+
+.container-fluid{
+  font-family: "Platypi", serif;
+  font-optical-sizing: auto;
+}
+
+strong{
+  font-family: "Platypi", serif;
+  font-optical-sizing: auto;
+}
+
+
+h1{
+  overflow: hidden;
+}
+
+h1 strong{
+  color: #fff;
+  font-size: 35px;
+  background: #000;
+  display: inline-block;
+  padding: 11px 20px;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
