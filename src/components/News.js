@@ -60,7 +60,7 @@ export default function News(props){
   //     totalResults: 0
   //   }
   
-  //   document.title=`${this.capitalize(props.category)}-NewsMonkey`;
+  //   document.title=`${this.capitalize(props.category)}-NewsVault`;
   // }
   const [articles,setArticles] = useState([]);
   const [loading,setLoading] = useState(false);
@@ -72,35 +72,35 @@ export default function News(props){
   
 
  // async updateNews(){
- //   props.setprogress(0);
+ //   props.setProgress(0);
  //   const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apikey=${props.apikey}&page=${this.state.page}&pageSize=${props.pageSize}`;
  //   this.setState({loading: true});
  //   let data = await fetch(url);
- //   props.setprogress(30);
+ //   props.setProgress(30);
  //   let parse = await data.json();
- //   props.setprogress(70);
+ //   props.setProgress(70);
  //   this.setState({
    //     articles: parse.articles,
    //     totalResults: parse.totalResults,
  //     loading: false
  //   })
- //   props.setprogress(100);
+ //   props.setProgress(100);
  // }
  
  const updateNews=async()=>{
-   props.setprogress(0);
+   props.setProgress(0);
    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apikey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
     setLoading(true);
     let data = await fetch(url);
-    props.setprogress(30);
+    props.setProgress(30);
     let parse = await data.json();
-    props.setprogress(70);
+    props.setProgress(70);
     
     setArticles(parse.articles);
     setTotalResults(parse.totalResults);
     setLoading(false);
 
-    props.setprogress(100);
+    props.setProgress(100);
   }
   
   
@@ -122,7 +122,7 @@ export default function News(props){
   //   this.updateNews()
   // }
   useEffect(() => {
-    document.title = `${capitalize(props.category)}-NewsMonkey`;
+    document.title = `${capitalize(props.category)}-NewsVault`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
     updateNews();
   }, [props.category]);
@@ -194,8 +194,8 @@ export default function News(props){
   
 
     return (
-      <div className="container my-4">
-        <h1 className="text-center"  style={{margin:'33px',marginTop:'65px'}}>NewsMonkey- Top {capitalize(props.category)} Headlines</h1>
+      <div className="container my-4" style={{color: props.mode==='light'?'black':'white'}}>
+        <h1 className="text-left"  style={{margin:'33px',marginTop:'95px'}}><strong style={{color: props.mode==='light'?'white':'white',backgroundColor: props.mode === 'light' ? 'black' : '#585555'}}>NewsVault</strong> -   Top {capitalize(props.category)} Headlines</h1>
           {loading && <Spinner />}
            <InfiniteScroll
            dataLength={articles ? articles.length : 0} // Check if articles is not undefined
@@ -208,7 +208,7 @@ export default function News(props){
                    {articles && articles.map((element) => {
                         return (
                              <div className="col mb-4" key={element.url}>        
-                                   <Newsitems  title={element.title} description={element.description} imageUrl={element.urlToImage} url={element.url} author={element.author} publishedAt={element.publishedAt} source={element.source.name}/>
+                                   <Newsitems  title={element.title} description={element.description} imageUrl={element.urlToImage} url={element.url} author={element.author} publishedAt={element.publishedAt} source={element.source.name} mode={props.mode} togglemode={props.togglemode}/>
                              </div>
                                );
                     })}
